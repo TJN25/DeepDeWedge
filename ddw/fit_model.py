@@ -246,7 +246,7 @@ def fit_model(
         logger=logger,
         callbacks=callbacks,
         detect_anomaly=True,
-        resume_from_checkpoint=resume_from_checkpoint,  # for pytorch-lightning < 2.0
+        # resume_from_checkpoint=resume_from_checkpoint,  # for pytorch-lightning < 2.0
     )
 
     # setup dataloaders
@@ -271,7 +271,7 @@ def fit_model(
     if val_data_exists and resume_from_checkpoint is None:
         trainer.validate(lit_unet, val_dataloader)
     trainer.fit(
-        #ckpt_path=resume_from_checkpoint,  # for pytorch-lightning >= 2.0
+        ckpt_path=resume_from_checkpoint,  # for pytorch-lightning >= 2.0
         model=lit_unet,
         train_dataloaders=fitting_dataloader,
         val_dataloaders=val_dataloader,
